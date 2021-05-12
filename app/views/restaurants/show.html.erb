@@ -1,0 +1,26 @@
+<div class="container">
+    <h1>Restaurant information</h1>
+    <div class="restaurant-info">
+      <h2><%= @restaurant.name %> - <%= @restaurant.category %></h2>
+      <h3><%= @restaurant.address %></h3>
+      <h4><%= @restaurant.phone_number %></h4>
+    </div>
+
+    <%= link_to 'Leave a review', new_restaurant_review_path(@restaurant), class: 'btn btn-primary'%>
+    <%= link_to 'Back to restaurant list', root_path(@restaurant), class: 'btn btn-primary'%>
+
+
+    <div class="restaurant-reviews">
+      <ul class="list-group">
+        <% @restaurant.reviews.each do |review| %>
+          <li class="list-group-item">
+            <%= review.content %> - <%= review.rating %>/5 
+            <div class="btn-reviews">
+              <%= link_to 'Edit', edit_review_path, class: 'btn btn-info' %> 
+              <%= link_to 'Delete', review_path(review), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-warning'%>
+            </div>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+</div>
